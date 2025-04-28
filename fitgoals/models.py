@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Goal(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     target = models.CharField(max_length=255, blank=True)
@@ -13,7 +13,7 @@ class Goal(models.Model):
         return self.title
 
 class Workouts(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     activity = models.CharField(max_length=100)
     duration = models.IntegerField()  # in minutes

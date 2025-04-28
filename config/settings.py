@@ -77,6 +77,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fitgoals',
+        'PORT': '5433',
     }
 }
 
