@@ -1,30 +1,23 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 
-# def home(request):
-#     return render(request, 'home.html')
 class Landing(LoginView):
     template_name = 'landing.html'
 
-def about(request):
-    return render(request, 'about.html')
-
 def signup(request):
-    error_message = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect('landing')
+            login(request, user)  # Log the user in immediately after signup
+            return redirect('dashboard')  # Redirect to dashboard after signup
         else:
-            error_message = 'Invalid sign up - try again'
+            error_message = 'Invalid sign up - please try again.'
+    else:
+        form = UserCreationForm()
+        error_message = ''
     
-    form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
