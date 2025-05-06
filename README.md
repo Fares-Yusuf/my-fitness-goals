@@ -32,7 +32,7 @@
 
 ---
 
-##Technologies used
+## Technologies used
 
 - Python
 - Django
@@ -47,7 +47,9 @@
  - Add a rating system for workouts (how tough/easy was it, keeps track saying if you need to increase the intensity and such)
  - Leave advice/comment section for public workouts
 
-
+## Authors:
+- Ahmed Almashaur
+- Fares Yusuf
 
 
 
