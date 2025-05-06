@@ -12,20 +12,17 @@ class Goal(models.Model):
     def __str__(self):
         return self.title
 
-class Workouts(models.Model):
+    
+class Workout(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    goal = models.ForeignKey(Goal, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
-    activity = models.CharField(max_length=100)
-    duration = models.IntegerField()  # in minutes
-    set = models.CharField(max_length=100)
-    reps = models.IntegerField()
-    weight = models.IntegerField()  # in kg
-    notes = models.TextField(blank=True, null=True)
+    activity_type = models.CharField(max_length=100)
+    duration = models.PositiveIntegerField(null=True, blank=True)
+    sets = models.PositiveIntegerField(null=True, blank=True)
+    reps = models.PositiveIntegerField(null=True, blank=True)
+    weight = models.FloatField(null=True, blank=True)
+    notes = models.TextField(blank=True)
 
-
-    # new code below
     def __str__(self):
-        return self.name
-
-
-
+        return f"{self.activity_type} on {self.date}"
